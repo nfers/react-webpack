@@ -2,19 +2,13 @@
 
 import React from 'react'
 
-const Title = React.createClass({
-    getDefaultProps: function () {
-        return {
-            name: 'Desconhecido', 
-            lastname: 'Sem Sobrenome'
-        }
-    },
+const Title = ({name, lastname }) => (
+        <h1> Desenvolvido por {`${name} ${lastname}`}  </h1>
+)
 
-    render: function () {
-        return (
-            <h1> Desenvolvido por {this.props.name + ' ' + this.props.lastname}  </h1>
-        )    
-    }
-})
+Title.defaultProps = {  
+    name: 'Desconhecido', 
+    lastname: 'Sem Sobrenome'
+}
 
 export default Title
