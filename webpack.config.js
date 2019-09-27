@@ -2,8 +2,9 @@
 
 const path = require('path')
 const webpack = require('webpack')
+const Validator = require('webpack-validator')
 
-module.exports = {
+module.exports = Validator({
     devtool: 'source-map',
     entry: [
         'react-hot-loader/patch',
@@ -20,8 +21,14 @@ module.exports = {
     plugins: [
         new webpack.HotModuleReplacementPlugin()
     ],
-    
+       
     module: {
+        preLoaders: [{
+            test: /\.js$/,  
+            exclude: /node_modules/,
+            include: /src/,
+            loader: 'standard'
+        }],
         loaders: [{
           test: /\.js$/,
           exclude: /node_modules/,
@@ -29,4 +36,4 @@ module.exports = {
           loader: 'babel'
         }]
     }
-}
+})
